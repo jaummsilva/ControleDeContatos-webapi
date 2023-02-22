@@ -11,11 +11,11 @@ namespace ContatosMVC_webapi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ContatoController : ControllerBase
+    public class TarefaController : ControllerBase
     {
         private readonly IRepository _repo;
 
-        public ContatoController(IRepository repo)
+        public TarefaController(IRepository repo)
         {
             _repo = repo;
         }
@@ -25,7 +25,7 @@ namespace ContatosMVC_webapi.Controllers
         {
             try
             {
-                var result = await _repo.GetAllContatosAsync();
+                var result = await _repo.GetAllTarefasAsync();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -34,12 +34,12 @@ namespace ContatosMVC_webapi.Controllers
             }
         }
 
-        [HttpGet("{ContatoId}")]
-        public async Task<IActionResult> GetByContatoId(int ContatoId)
+        [HttpGet("{TarefaId}")]
+        public async Task<IActionResult> GetByTarefaId(int TarefaId)
         {
             try
             {
-                var result = await _repo.GetTarefaAsyncById(ContatoId);
+                var result = await _repo.GetTarefaAsyncById(TarefaId);
 
                 return Ok(result);
             }
@@ -54,7 +54,7 @@ namespace ContatosMVC_webapi.Controllers
         {
             try
             {
-                var result = await _repo.GetContatosAsyncByUsuarioId(usuarioId);
+                var result = await _repo.GetTarefasAsyncByUsuarioId(usuarioId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -65,7 +65,7 @@ namespace ContatosMVC_webapi.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> post(Contato model)
+        public async Task<IActionResult> post(Tarefa model)
         {
             try
             {
@@ -84,13 +84,13 @@ namespace ContatosMVC_webapi.Controllers
             return BadRequest();
         }
 
-        [HttpPut("{contatoId}")]
-        public async Task<IActionResult> put(int contatoId, Contato model)
+        [HttpPut("{tarefaId}")]
+        public async Task<IActionResult> put(int tarefaId, Tarefa model)
         {
             try
             {
-                var contato = await _repo.GetContatoAsyncById(contatoId);
-                if (contato == null) return NotFound();
+                var tarefa = await _repo.GetTarefaAsyncById(tarefaId);
+                if (tarefa == null) return NotFound();
 
                 _repo.Update(model);
 
@@ -108,14 +108,14 @@ namespace ContatosMVC_webapi.Controllers
         }
 
         [HttpDelete("{usuarioId}")]
-        public async Task<IActionResult> delete(int contatoId)
+        public async Task<IActionResult> delete(int tarefaId)
         {
             try
             {
-                var contato = await _repo.GetUsuarioAsyncById(contatoId);
-                if (contato == null) return NotFound();
+                var tarefa = await _repo.GetUsuarioAsyncById(tarefaId);
+                if (tarefa == null) return NotFound();
 
-                _repo.Delete(contato);
+                _repo.Delete(tarefa);
 
                 if (await _repo.SaveChangesAsync())
                 {

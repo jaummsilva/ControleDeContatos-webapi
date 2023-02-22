@@ -55,6 +55,10 @@ namespace ContatosMVC_webapi.Models
             {
                 entity.HasKey(AD => new { AD.UsuarioId, AD.TarefaId });
             });
+            modelBuilder.Entity<UsuarioContato>(entity =>
+            {
+                entity.HasKey(AD => new { AD.UsuarioId, AD.ContatoId });
+            });
 
 
             OnModelCreatingPartial(modelBuilder);

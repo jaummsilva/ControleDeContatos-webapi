@@ -57,8 +57,8 @@ namespace SmartSchool_WebAPI.Data
             IQueryable<Tarefa> query = _context.Tarefas;
 
             query = query.AsNoTracking()
-                         .OrderBy(usuario => usuario.Id)
-                         .Where(usuario => usuario.UsuarioTarefas.Any(ad => ad.UsuarioId == usuarioId));
+                         .OrderBy(tarefa => tarefa.Id)
+                         .Where(tarefa => tarefa.UsuarioTarefas.Any(ad => ad.UsuarioId == usuarioId));
 
             return await query.ToArrayAsync();
         }
@@ -82,6 +82,38 @@ namespace SmartSchool_WebAPI.Data
                          .Where(tarefa => tarefa.Id == tarefaId);
 
             return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<Contato[]> GetAllContatosAsync()
+        {
+            IQueryable<Contato> query = _context.Contatos;
+
+            query = query.AsNoTracking()
+                         .OrderBy(c => c.Id);
+
+            return await query.ToArrayAsync();
+        }
+
+        public async Task<Contato> GetContatoAsyncById(int contatoId)
+        {
+            IQueryable<Contato> query = _context.Contatos;
+
+            query = query.AsNoTracking()
+                         .OrderBy(contato => contato.Id)
+                         .Where(contato => contato.Id == contatoId);
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<Contato[]> GetContatosAsyncByUsuarioId(int usuarioId)
+        {
+            IQueryable<Contato> query = _context.Contatos;
+
+            query = query.AsNoTracking()
+                         .OrderBy(contato => contato.Id)
+                         .Where(contato => contato.UsuarioContatos.Any(ad => ad.UsuarioId == usuarioId));
+
+            return await query.ToArrayAsync();
         }
     }
 }

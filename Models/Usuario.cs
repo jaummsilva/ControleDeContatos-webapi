@@ -25,9 +25,7 @@ namespace ContatosMVC_webapi.Models
 
         public IEnumerable<UsuarioTarefa> UsuarioTarefas { get; set; }
 
-        internal bool Any(Func<object, bool> value)
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<UsuarioContato> UsuarioContatos { get; set; }
+
     }
 }

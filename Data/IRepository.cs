@@ -18,5 +18,11 @@ namespace ContatosMVC_webapi.Data
         Task<Tarefa[]> GetAllTarefasAsync();
         Task<Tarefa> GetTarefaAsyncById(int tarefaId);
         Task<Tarefa[]> GetTarefasAsyncByUsuarioId(int usuarioId);
+
+        //Contato 
+
+        Task<Contato[]> GetAllContatosAsync();
+        Task<Contato> GetContatoAsyncById(int contatoId);
+        Task<Contato[]> GetContatosAsyncByUsuarioId(int usuarioId);
     }
 }
