@@ -23,9 +23,5 @@ namespace ContatosMVC_webapi.Models
         public virtual ICollection<Contato> Contatos { get; set; }
         public virtual ICollection<Tarefa> Tarefas { get; set; }
 
-        public IEnumerable<UsuarioTarefa> UsuarioTarefas { get; set; }
-
-        public IEnumerable<UsuarioContato> UsuarioContatos { get; set; }
-
     }
 }

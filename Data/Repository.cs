@@ -58,7 +58,7 @@ namespace SmartSchool_WebAPI.Data
 
             query = query.AsNoTracking()
                          .OrderBy(tarefa => tarefa.Id)
-                         .Where(tarefa => tarefa.UsuarioTarefas.Any(ad => ad.UsuarioId == usuarioId));
+                         .Where(tarefa=> tarefa.UsuarioId == usuarioId);
 
             return await query.ToArrayAsync();
         }
@@ -111,7 +111,7 @@ namespace SmartSchool_WebAPI.Data
 
             query = query.AsNoTracking()
                          .OrderBy(contato => contato.Id)
-                         .Where(contato => contato.UsuarioContatos.Any(ad => ad.UsuarioId == usuarioId));
+                         .Where(contato=> contato.UsuarioId == usuarioId);
 
             return await query.ToArrayAsync();
         }

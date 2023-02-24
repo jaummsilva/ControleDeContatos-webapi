@@ -19,7 +19,6 @@ namespace ContatosMVC_webapi.Models
         public virtual DbSet<Contato> Contatos { get; set; } = null!;
         public virtual DbSet<Tarefa> Tarefas { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -50,16 +49,6 @@ namespace ContatosMVC_webapi.Models
                     .WithMany(p => p.Tarefas)
                     .HasForeignKey(d => d.UsuarioId);
             });
-
-            modelBuilder.Entity<UsuarioTarefa>(entity =>
-            {
-                entity.HasKey(AD => new { AD.UsuarioId, AD.TarefaId });
-            });
-            modelBuilder.Entity<UsuarioContato>(entity =>
-            {
-                entity.HasKey(AD => new { AD.UsuarioId, AD.ContatoId });
-            });
-
 
             OnModelCreatingPartial(modelBuilder);
         }

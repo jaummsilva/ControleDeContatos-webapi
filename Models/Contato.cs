@@ -13,7 +13,5 @@ namespace ContatosMVC_webapi.Models
 
         public virtual Usuario? Usuario { get; set; }
 
-        public IEnumerable<UsuarioContato> UsuarioContatos { get; set; }
-
     }
 }
